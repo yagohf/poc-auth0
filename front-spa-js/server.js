@@ -16,7 +16,7 @@ app.get("/*", (_, res) => {
   res.sendFile(join(__dirname, "index.html"));
 });
 
-process.on("SIGINT", function() {
+process.on("SIGINT", function () {
   process.exit();
 });
 
