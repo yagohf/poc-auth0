@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Clear Pro - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" /> -->
+  <link rel="stylesheet" href="https://login.clear.com.br/pit/login/lib/bootstrap/dist/css/bootstrap.css">
+  <script src="https://login.clear.com.br/pit/login/lib/jquery/dist/jquery.js"></script>
+  <script src="https://login.clear.com.br/pit/login/lib/jquery-mask/dist/jquery.mask.js"></script>
+  <script src="https://login.clear.com.br/pit/login/lib/jquery-validation/dist/jquery.validate.js"></script>
+  <script src="https://login.clear.com.br/pit/login/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+  <link rel="stylesheet" href="https://login.clear.com.br/pit/login/sass/login.min.css?v=eNvn2G1yowTACD6N4rdOF7X0yRLilXR4Z8yZUDS7MNE">
+  <link rel="shortcut icon" href="https://login.clear.com.br/pit/login/images/favicon-clear.ico">
+</head>
+
+<body>
+
+  <div class="container body-content">
+    <div id="default-view" class="cont_login">
+      <div class="cont_left">
+          <div class="logo-wrapper">
+              <em class="lg_clear"></em>
+          </div>
+          <div class="cont_account">
+              <span class="title">CLEAR CORRETORA</span>
+              <span class="sub_title">Ainda não é cliente?</span>
+              <a href="https://cadastro.clear.com.br/" class="bt_open_account" target="_blank" rel="noopener noreferrer">ABRA SUA CONTA</a>
+          </div>
+      </div>
+      <!-- <div class="head">
+          <a asp-controller="Account" asp-action="Demo" class="bt_demo mvp-hidden">CONTA DEMONSTRAÇÃO</a>
+          <a href="#" class="text mvp-hidden">Experimente nossa plataforma</a>
+      </div> -->
+      <div class="cont_right">
+          <form id="accountForm">
+              <div class="cont_form">
+                  <h1 class="title">Bem-vindo à Clear.</h1>
+                  <h2 class="sub_title">Faça seu login para continuar.</h2>
+                  <div class="form-group cont_inputs filledIdentificationNumber">
+                      <!--campo com erro adicionar a classe invalid-->
+                      <label for="Username" class="form-label tit_inputs">CPF</label>
+                      <input id="input-username-1" for="Username" class="form-input form-input-center inputs" placeholder="123.456.789-10" />                      
+                  </div>  
+                  
+                  <div class="form-group cont_inputs field filledPassword">
+                      <label for="Password" class="form-label tit_inputs">Senha</label>
+                      <div class="input-group">
+                          <input for="Password" class="form-input form-input-center inputs" id="input-pwd-1" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" maxlength="10" autocomplete="off" />
+                          <span id="show_hide_password" class="field-icon icon-eye"></span>
+                      </div>                      
+                  </div>
+                  <div class="form-group">
+                      <button id="btn-login-1" type="button" value="login" class="bt_signin">ACESSAR MINHA CONTA</button>
+                  </div>
+                  <div class="cont_links">
+                      <a href="#" class="fpass">Esqueci minha senha</a>
+                      <a href="#" class="fsig">Esqueci minha assinatura eletrônica</a>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+  </div>
+
+  <!--[if IE 8]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ie8/0.2.5/ie8.js"></script>
+  <![endif]-->
+
+  <!--[if lte IE 9]>
+  <script src="https://cdn.auth0.com/js/base64.js"></script>
+  <script src="https://cdn.auth0.com/js/es5-shim.min.js"></script>
+  <![endif]-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0/9.11/auth0.min.js"></script>
+
+  <script>
+    var config = JSON.parse(
+      decodeURIComponent(escape(window.atob('@@config@@')))
+    );
+
+    var params = Object.assign({
+      domain: config.auth0Domain,
+      clientID: config.clientID,
+      redirectUri: config.callbackURL,
+      responseType: 'code'
+    }, config.internalOptions);
+
+    var webAuth = new auth0.WebAuth(params);
+
+    function login(username, password) {
+      webAuth.login({
+        realm: 'poc-clear-pro-spa-customdb',
+        username: username,
+        password: password,
+        responseType: 'token id_token'
+      }, function (resp, err) {
+        if (resp) {
+          $('#response-container').text(resp);
+        } else if (err) {
+          $('#response-container').text(err);
+        }
+      });
+    }
+
+    $(document).ready(() => {
+      $('#btn-login-1').on('click', () => {
+        login($('#input-username-1').val(), $('#input-pwd-1').val());
+      });
+    });
+  </script>
+</body>
+
+</html>
