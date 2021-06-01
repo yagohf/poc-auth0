@@ -3,10 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>poc_auth_back</RootNamespace>
+    <UserSecretsId>58ffdaf8-b0f5-4871-bb60-eaf4c5a704e1</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.11.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.11.1" />
   </ItemGroup>
 
 
